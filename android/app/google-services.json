@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "168611057017",
+    "firebase_url": "https://tabdeel-d23ab.firebaseio.com",
+    "project_id": "tabdeel-d23ab",
+    "storage_bucket": "tabdeel-d23ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168611057017:android:ae29964490c731aa7833a8",
+        "android_client_info": {
+          "package_name": "com.vision.tabdeel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168611057017-7l2fv4ul6al5jell2i2lq8sg588k3uk7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMwU_jr6P5z_371ZdhlJKoFbnTa--4GD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168611057017-7l2fv4ul6al5jell2i2lq8sg588k3uk7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
