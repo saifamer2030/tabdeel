@@ -96,6 +96,7 @@ class _SplashState extends State<Splash> {
 
   @override
   void initState() {
+    checkIsLogin();
     super.initState();
 
     setState(() {

@@ -43,8 +43,12 @@ dependencies:
   image_picker: ^0.6.1+4
   # device_id: ^0.2.0
   flutter_rating: ^0.0.2
-  shared_preferences: ^0.5.2
+  shared_preferences: ^0.5.12
   firebase_messaging: ^5.1.8
+#  permission_handler: ^4.4.0+hotfix.2
+  flutter_alert: ^0.4.0
+#  access_settings_menu: ^0.0.1
+#  android_intent: ^0.3.7+7
   # device_info: ^0.4.1+1
   search_map_place: ^0.3.0
   google_maps_webservice: ^0.0.16

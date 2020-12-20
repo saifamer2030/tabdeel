@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_alert/flutter_alert.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:tabdeel/BackEnd/models/client_model.dart';
 import 'package:tabdeel/BackEnd/models/order_model.dart';
 import 'package:tabdeel/BackEnd/shared_prefrences.dart';
-
 import '../../localizations.dart';
 import 'client_HomeShops.dart';
 import 'client_drawer.dart';
@@ -22,15 +23,71 @@ class HomeWidget extends StatefulWidget {
 class _HomeWidgetState extends State<HomeWidget> {
   ClientModel model;
   ClientOrder order;
-
   _HomeWidgetState(this.model, this.order);
 
   @override
-  void initState() {
+  initState() {
     super.initState();
+    // requestLocationPermission();
+    // _gpsService();
+
     getlocations();
     checkStorge();
   }
+//   Future<bool> _requestPermission(PermissionGroup permission) async {
+//     final PermissionHandler _permissionHandler = PermissionHandler();
+//     var result = await _permissionHandler.requestPermissions([permission]);
+//
+//     // if (result[permission] == PermissionStatus.granted) {
+//     //   return true;
+//     // }
+//     return false;
+//   }
+// /*Checking if your App has been Given Permission*/
+//   Future<bool> requestLocationPermission({Function onPermissionDenied}) async {
+//     var granted = await _requestPermission(PermissionGroup.location);
+//     if (granted!=true) {
+//       requestLocationPermission();
+//     }
+//     debugPrint('requestContactsPermission $granted');
+//     return granted;
+//   }
+// /*Show dialog if GPS not enabled and open settings location*/
+//   Future _checkGps() async {
+//     if (!(await Geolocator().isLocationServiceEnabled())) {
+//       if (Theme.of(context).platform == TargetPlatform.android) {
+//         showDialog(
+//           context: context,
+//           builder: (BuildContext context) {
+//             return AlertDialog(
+//               title: Text("Can't get gurrent location"),
+//               content:const Text('Please make sure you enable GPS and try again'),
+//               actions: <Widget>[
+//                 FlatButton(child: Text('Ok'),
+//                   onPressed: () {
+//                     final AndroidIntent intent = AndroidIntent(
+//                         action: 'android.settings.LOCATION_SOURCE_SETTINGS');
+//                     intent.launch();
+//                     Navigator.of(context, rootNavigator: true).pop();
+//                     _gpsService();
+//                   },
+//                 ),
+//               ],
+//             );
+//           },
+//         );
+//       }}}
+// /*Check if gps service is enabled or not*/
+//   Future _gpsService() async {
+//     if (!(await Geolocator().isLocationServiceEnabled())) {
+//       _checkGps();
+//       return null;
+//     } else
+//       return true;
+//   }
+
+
+
 
   double userrate;
   String name;
@@ -45,10 +102,11 @@ class _HomeWidgetState extends State<HomeWidget> {
   }
 
   LatLng currentLocation;
-  Location location = new Location();
-  String myLat, myLong;
 
-  getlocations() {
+  String myLat, myLong;
+  Location location = new Location();
+
+  getlocations() async {
     location.getLocation().then((loc) {
       currentLocation = LatLng(loc.latitude, loc.longitude);
       myLong = loc.longitude.toString();
@@ -56,7 +114,8 @@ class _HomeWidgetState extends State<HomeWidget> {
     });
   }
 
-  goTosecandpage() {
+  goTosecandpage() async {
+
     location.getLocation().then(
       (loc) {
         currentLocation = LatLng(loc.latitude, loc.longitude);

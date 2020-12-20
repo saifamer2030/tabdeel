@@ -26,13 +26,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 //   ));
 // }
 
-void main() => runApp(new MyApp());
+void main() {
+  // ignore: invalid_use_of_visible_for_testing_member
+  SharedPreferences.setMockInitialValues({});
+
+  runApp(new MyApp());
+}
 
 class MyApp extends StatefulWidget {
   static void setLocale(BuildContext context, Locale newLocale) async {
     print('setLocale()');
-    _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
-
+    final _MyAppState state = context.findAncestorStateOfType<_MyAppState>();
+    // _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
     state.setState(() {
       state.locale = newLocale;
     });
@@ -47,7 +52,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   void setLocale(BuildContext context, Locale newLocale) async {
     print('setLocale()');
-    _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
+    // _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
+    final _MyAppState state = context.findAncestorStateOfType<_MyAppState>();
+
 
     state.setState(() {
       state.locale = newLocale;
@@ -61,21 +68,20 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     print('initState()');
-
     this._fetchLocale().then((locale) {
-      setState(() {
-        this.localeLoaded = true;
-        this.locale = locale;
-        print(locale);
-      });
+      this.localeLoaded = true;
+      this.locale = locale;
+      print("#################$locale");
+
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
-    if (this.localeLoaded == false) {
-      return CircularProgressIndicator();
-    } else {
+    // if (this.localeLoaded == false) {
+    //   return CircularProgressIndicator();
+    // }
       return MaterialApp(
         title: 'Tabdeel',
         debugShowCheckedModeBanner: false,
@@ -97,7 +103,7 @@ class _MyAppState extends State<MyApp> {
         ],
         locale: locale,
       );
-    }
+
   }
 
   _fetchLocale() async {

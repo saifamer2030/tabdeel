@@ -36,7 +36,6 @@ class _LoginState extends State<Login> {
     return Scaffold(
         body: Container(
             color: Color.fromRGBO(116, 189, 242, 1.0),
-            child: Center(
               child: ListView(
                 children: <Widget>[
                   Container(
@@ -290,7 +289,7 @@ class _LoginState extends State<Login> {
                         )
                 ],
               ),
-            )));
+            ));
   }
 
   Future<http.Response> _loginUser(
